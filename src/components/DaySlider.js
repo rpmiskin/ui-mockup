@@ -1,14 +1,15 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 import Slider from '@material-ui/core/Slider';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
     root: {
-      width: 600
+    //   width: 600
     },
     slider: {
     //   marginTop: 40
@@ -18,7 +19,6 @@ const useStyles = makeStyles({
     }
   });
   function formatHour(v) {
-      console.log(v);
     const mark = marks.find((m)=>m.value === v);
     return mark?mark.valueLabel:"???";
   }
@@ -54,14 +54,25 @@ const marks = [
 //   {frequency: "15min", schedule:[9,17]}]
 //
 
+function detectOverlaps(schedule) {
+    const justHours = schedule.filter(s=>s && s.schedule && Array.isArray(s.schedule)).map(s=>s.schedule);
+    justHours.sort((a,b)=>{
+        if (a[0]===b[0]) {return 0;}
+        if (a[0]<b[0]) {return -1;}
+        return 1;
+    });
+    console.log(JSON.stringify(justHours));
+}
+
+
 function createSliders(props) {
-    
+  
     const {schedules, classes, onChange} = props;
-    console.log(JSON.stringify(schedules, null, 3));
     const disabled = false;
     if (!schedules || schedules.length === 0) {
         return (undefined)
     } else {
+        detectOverlaps(schedules);
         return (schedules.map((s, i)=>{return (
             <Grid container alignItems="top">
                 <Grid item xs={2}>
@@ -88,7 +99,7 @@ function createSliders(props) {
                         disabled={disabled}
                     />
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={1}>
                     <Button disabled={disabled} onClick={()=>{
                         const newSchedule = [...schedules];
                         newSchedule.splice(i, 1);
@@ -134,6 +145,7 @@ function DisabledSlider(props) {
 export default function DaySlider(props) {
     const classes=useStyles();
     const {label= "defaultText", onChange= ()=>{}, schedule=[], disabled=false, setDisabled=()=>{}} = props;
+    
     const sliders = createSliders({schedules:schedule, onChange, classes} );
       return (
       <Grid container alignItems="top" spacing={2} className={classes.root}>

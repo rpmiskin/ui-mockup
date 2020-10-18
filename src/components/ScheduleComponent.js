@@ -9,7 +9,7 @@ import DaySlider from './DaySlider';
 
 const useStyles = makeStyles({
     root: {
-      width: 600
+    //   width: 600
     },
     slider: {
       marginTop: 40
@@ -44,23 +44,22 @@ function onDayChange(day, schedule, onChange) {
         onChange(newValue);
     }
 }
-const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+export const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 
 export default function ScheduleComponent(props) {
     const classes=useStyles();
     const {schedule={}, onChange=()=>{}} = props;
-    return (
-        <Grid container>
-            {days.map((day)=>{return (
-                <Grid item>
+    
+    return (<Grid container spacing={3}>{
+            days.map((day)=>{return (
+                    <Grid item xs={12}>
                     <DaySlider  
                         className={classes.slider}
                         label={day}
                         onChange={onDayChange(day, schedule, onChange)}
                         schedule={schedule[day]}
                     />
-                </Grid>          
-            )})}
-        </Grid>
-    );
+                    </Grid>
+            )})
+            }</Grid>);
 }

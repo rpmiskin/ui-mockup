@@ -9,7 +9,7 @@ A development server can be started as follows:
 
 ```
 npm install
-npm run development
+npm run develop
 ```
 
 

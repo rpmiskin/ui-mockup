@@ -4,23 +4,12 @@ import Grid from '@material-ui/core/Grid';
 import Slider from '@material-ui/core/Slider';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
-import ProTip from '../components/ProTip';
-import Link from '../components/Link';
-import Copyright from '../components/Copyright';
 import ScheduleComponent from '../components/ScheduleComponent';
-const useStyles = makeStyles({
-  root: {
-    width: 600
-  },
-  slider: {
-    marginTop: 40
-  }
-});
-
-const defaultSchedule = [9, 17];
-
+import Link from '../components/Link';
+import ScheduleDialog from '../components/ScheduleDialog';
+import ScheduleSummary from '../components/ScheduleSummary';
 /*
 Top level state
 
@@ -43,11 +32,11 @@ A slider's onChange sends out the specific schedule tuple.
 
 */
 
-
+const defaultSchedule = [9, 17];
 export default function Index() {
-  
+  const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [schedule, setSchedule] = useState({
-    monday: [{schedule: defaultSchedule}, {schedule:[3,4]}, {schedule:[3,4]}],
+    monday: [ {schedule:[3,4]},{schedule: defaultSchedule}, {schedule:[18,22]}],
     tuesday: [{schedule: defaultSchedule}],
     wednesday: [{schedule: defaultSchedule}],
     thursday: [{schedule: defaultSchedule}],
@@ -56,19 +45,36 @@ export default function Index() {
     sunday: [{schedule: defaultSchedule}],
   })
 
-  const classes=useStyles();
   return (
     <Container maxWidth="md">
+      <ScheduleDialog 
+        schedule={schedule}
+        open={dialogIsOpen}
+        onCancel={()=>setDialogIsOpen(false)}
+        onOk={(newSchedule)=>{setSchedule(newSchedule);setDialogIsOpen(false);}}/>
       <Box my={8}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          UI Mockups
-        </Typography>
-        <ul>
-          <li>
-            <Link to="/schedule-example">Schedule Example</Link> - Example that allows setting of a complex schedule for a job.
-          </li>
-        </ul>
-      </Box>
+      <Link to="/">Go to the main page</Link>
+        <Grid container>
+          <Grid item xs={12}>
+          <Typography variant="h4" component="h1" gutterBottom>
+            Schedule Example
+          </Typography>
+          </Grid>
+          <Card>
+          <Grid container style={{padding:"10px"}}>
+            <Grid item xs={9}>
+              <ScheduleSummary schedule={schedule}/>
+            </Grid>
+            <Grid item xs={3}>
+            <Button onClick={()=>setDialogIsOpen(true)}>
+              Change
+            </Button>
+            </Grid>
+          </Grid>
+          </Card>
+          
+        </Grid>
+        </Box>
     </Container>
   );
 }
