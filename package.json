@@ -5,9 +5,11 @@
   "dependencies": {
     "@material-ui/core": "latest",
     "@material-ui/styles": "latest",
-    "gatsby": "latest",
+    "gatsby": "^2.24.91",
     "gatsby-plugin-material-ui": "latest",
     "gatsby-plugin-react-helmet": "latest",
+    "gatsby-source-filesystem": "^2.3.37",
+    "gatsby-transformer-javascript-frontmatter": "^2.3.15",
     "lodash.isequal": "^4.5.0",
     "react": "latest",
     "react-dom": "latest",

@@ -33,10 +33,10 @@ A slider's onChange sends out the specific schedule tuple.
 */
 
 export const frontmatter= {
-  title: 'Schedule Example',
-  written: "2020-10-20",
-  path: 'schedule-example',
-  description: 'An example of a complex schedule picker. Each day can have multiple schedules.'
+  title: 'Second Example',
+  written: "2020-10-29",
+  path: 'second-example',
+  description: 'A different example goes here!'
 };
 
 const defaultSchedule = [9, 17];
