@@ -20,6 +20,13 @@ module.exports = {
         path: `${__dirname}/src/pages/`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `mockups`,
+        path: `${__dirname}/src/mockups`,
+      },
+    },
     "gatsby-transformer-javascript-frontmatter",
   ],
   siteMetadata: {
