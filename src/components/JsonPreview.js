@@ -3,9 +3,13 @@ import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 
 function ParseFailedCard() {
-   
-        return <Card style={{height:"100%"}}><Typography>Unable to parse the supplied input as JSON. Please correct any errors and try again.</Typography></Card>;
-   
+        return (
+        <Card style={{height:"100%"}}>
+          <Typography>
+            Unable to format the supplied input as JSON.
+            Please correct any errors and try again.
+          </Typography>
+        </Card>);
 }
 
 
@@ -18,17 +22,23 @@ export default function Preview(props) {
     const {code} = props;
 
     let parseFailed = false;
-    let json;
+    let parsed;
+    let formatted;
     try {
-      json = JSON.parse(code);
+      parsed = JSON.parse(code);
+      formatted = JSON.stringify(parsed, null, 3)
     } catch (error) {
          return <ParseFailedCard/>;
     }
 
 
-    return (<Card style={{height:"100%"}}><pre>
-                {JSON.stringify(json, null, 3)}
-            </pre></Card>);
+    return (
+      <Card style={{height:"100%"}}>
+        <pre>
+          {formatted}
+        </pre>
+      </Card>
+    );
 
 }
     
