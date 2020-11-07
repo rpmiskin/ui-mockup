@@ -84,6 +84,7 @@ export default function Preview(props) {
                 schema={schema}
                 uiSchema={uiSchema}
                 formData={formData}
+                liveValidate
                 onChange={e=>setFormData(e.formData)}
               >
                 <Fragment/> {/* disables the submit button */}
