@@ -10,20 +10,31 @@ import Link from '../components/Link';
 import JsonEditor from '../components/JsonEditor'
 
 import JsonPreview from '../components/JsonPreview'
+import FormPreview from '../components/JsonSchemaFormPreview'
 
 const initialCode = {
-  some:{
-    object:{
-      with:
-        "nesting!"
-      
-    }
+  title: "Todo",
+  type: "object",
+  required: ["title"],
+  properties: {
+    title: {type: "string", title: "Title", default: "A new task"},
+    done: {type: "boolean", title: "Done?", default: false}
   }
-}
+};
+
+const schema = {
+  title: "Todo",
+  type: "object",
+  required: ["title"],
+  properties: {
+    title: {type: "string", title: "Title", default: "A new task"},
+    done: {type: "boolean", title: "Done?", default: false}
+  }
+};
 
 const defaultSchedule = [9, 17];
 export default function Index() {
-  const [code, setCode] = useState(JSON.stringify(initialCode, null, 3));
+  const [code, setCode] = useState(JSON.stringify(schema, null, 3));
   return (
     <Container maxWidth="lg">
       <Box my={8}>
@@ -47,7 +58,7 @@ export default function Index() {
               />    
             </Grid>
             <Grid item xs={6}>
-            <JsonPreview code={code}/>
+            <FormPreview code={code}/>
             </Grid>
           </Grid>
           </Card>

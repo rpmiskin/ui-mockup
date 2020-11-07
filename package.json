@@ -4,7 +4,10 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "latest",
+    "@material-ui/icons": "^4.9.1",
     "@material-ui/styles": "latest",
+    "@rjsf/core": "^2.4.0",
+    "@rjsf/material-ui": "^2.4.0",
     "@uiw/react-codemirror": "^3.0.1",
     "file": "^0.2.2",
     "fs": "0.0.1-security",
@@ -14,6 +17,7 @@
     "lodash.isequal": "^4.5.0",
     "react": "latest",
     "react-dom": "latest",
+    "react-error-boundary": "^3.0.2",
     "react-helmet": "latest",
     "system": "^2.0.1"
   },
