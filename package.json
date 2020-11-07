@@ -5,13 +5,17 @@
   "dependencies": {
     "@material-ui/core": "latest",
     "@material-ui/styles": "latest",
+    "@uiw/react-codemirror": "^3.0.1",
+    "file": "^0.2.2",
+    "fs": "0.0.1-security",
     "gatsby": "latest",
     "gatsby-plugin-material-ui": "latest",
     "gatsby-plugin-react-helmet": "latest",
     "lodash.isequal": "^4.5.0",
     "react": "latest",
     "react-dom": "latest",
-    "react-helmet": "latest"
+    "react-helmet": "latest",
+    "system": "^2.0.1"
   },
   "scripts": {
     "develop": "gatsby develop",

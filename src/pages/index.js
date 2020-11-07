@@ -67,6 +67,9 @@ export default function Index() {
           <li>
             <Link to="/schedule-example">Schedule Example</Link> - Example that allows setting of a complex schedule for a job.
           </li>
+          <li>
+            <Link to="/editor-example">Editor Example</Link> - Example that an embedded code editor.
+          </li>
         </ul>
       </Box>
     </Container>
