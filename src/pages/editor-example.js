@@ -23,12 +23,59 @@ const initialCode = {
 };
 
 const schema = {
-  title: "Todo",
-  type: "object",
-  required: ["title"],
-  properties: {
-    title: {type: "string", title: "Title", default: "A new task"},
-    done: {type: "boolean", title: "Done?", default: false}
+  "schema": {
+    "title": "Todo",
+    "type": "object",
+    "required": [
+      "title"
+    ],
+    "properties": {
+      "title": {
+        "type": "string",
+        "title": "Title",
+        "default": "A new task"
+      },
+      "done": {
+        "type": "boolean",
+        "title": "Done?",
+        "default": false
+      },
+      "nested": {
+        "type": "object",
+        "properties": {
+          "integerRange": {
+            "title": "Slider",
+            "type": "integer",
+            "minimum": 42,
+            "maximum": 100
+          },
+          "bar": {
+            "type": "number"
+          },
+          "nestedDeeper": {
+            "type": "object",
+            "properties": {
+              "foo": {
+                "type": "number"
+              },
+              "bar": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "uiSchema": {
+    "nested": {
+      "integerRange":{
+        "ui:widget": "range"
+      },
+      "foo": {
+        "ui:widget": "updown"
+      }
+    }
   }
 };
 
@@ -49,8 +96,8 @@ export default function Index() {
           </Typography>
           </Grid>
           <Grid item xs={12}>
-          <Card >
-          <Grid container style={{padding:"10px", height:"600px"}}>
+
+          <Grid container alignItems="stretch" justify="space-between" spacing={5} style={{ height:"600px"}}>
             <Grid item xs={6}>
               <JsonEditor
                 code={code}
@@ -58,10 +105,10 @@ export default function Index() {
               />    
             </Grid>
             <Grid item xs={6}>
-            <FormPreview code={code}/>
+              <FormPreview code={code}/>
             </Grid>
           </Grid>
-          </Card>
+
           </Grid>
           
         </Grid>

@@ -39,11 +39,15 @@ function ErrorFallback(props) {
 /**
  * Expects props to contain an string 'code' that is parsable JSON. If not an error is displayed.
  * 
+ * If the parsed input contains a field called 'schema' this (and option uiSchema field) will be passed to the Form as the schema and uiSchema props.
+ * If the input does not include a field called 'schema' the entire object is passed to as the schema prop.
+ * 
  * @param {*} props 
  */
 export default function Preview(props) {
     const {code} = props;
     const [formData, setFormData] = useState({});
+    const [showDialog, setShowDialog] = useState(false)
 
     let parseFailed = false;
     let parsed;
@@ -54,10 +58,19 @@ export default function Preview(props) {
          return <ParseFailedCard/>;
     }
 
+    let schema, uiSchema;
+    
+    if (parsed.schema) {
+      schema = parsed.schema;
+      uiSchema = parsed.uiSchema;
+    } else {
+      schema = parsed;
+    }
+
     return (
-      <Card style={{height:"100%"}}>
-        <Grid container>
-          <Grid item xs={12}>
+      <div style={{height:"100%"}}>
+        <Grid container direction="column" justify="space-between">
+          <Grid item>
             <ButtonGroup>
                 <Button  onClick={()=>{console.log('show data')}}>
                   Show Data
@@ -65,15 +78,20 @@ export default function Preview(props) {
                 <Button onClick={()=>{setFormData({});}}>Reset Data</Button>
             </ButtonGroup>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item>
             <ErrorBoundary FallbackComponent={ErrorFallback} onReset={()=>console.log('reset!!!')}>
-              <Form schema={parsed} formData={formData} onChange={e=>setFormData(e.formData)} onSubmit={()=>alert('submit!')}>
+              <Form 
+                schema={schema}
+                uiSchema={uiSchema}
+                formData={formData}
+                onChange={e=>setFormData(e.formData)}
+              >
                 <Fragment/> {/* disables the submit button */}
               </Form>
             </ErrorBoundary>
           </Grid>
         </Grid>
-      </Card>
+      </div>
     );
 
 }
