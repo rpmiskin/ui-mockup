@@ -45,12 +45,12 @@ export default function Index() {
             Editor Example
           </Typography>
           <Typography  gutterBottom>
-            An example JSON editor with a live updating preview beside it.
+            An example JSON editor with a live updating react-jsonschema-form preview beside it.
           </Typography>
           </Grid>
           <Grid item xs={12}>
           <Card >
-          <Grid container style={{padding:"10px", height:"400px"}}>
+          <Grid container style={{padding:"10px", height:"600px"}}>
             <Grid item xs={6}>
               <JsonEditor
                 code={code}
