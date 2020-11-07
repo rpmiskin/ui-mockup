@@ -91,8 +91,12 @@ export default function Index() {
           <Typography variant="h4" component="h1" gutterBottom>
             Editor Example
           </Typography>
-          <Typography  gutterBottom>
+          <Typography paragraph>
             An example JSON editor with a live updating react-jsonschema-form preview beside it.
+          </Typography>
+          <Typography paragraph>
+            Clicking the 'SHOW DATA' button provides a preview of the data that the form would submit
+            while clicking 'RESET DATA' will return to the default values.
           </Typography>
           </Grid>
           <Grid item xs={12}>
