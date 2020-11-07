@@ -5,10 +5,15 @@ import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
+
 import Typography from '@material-ui/core/Typography';
 import Form from '@rjsf/material-ui';
 import Grid from '@material-ui/core/Grid';
 import {ErrorBoundary} from 'react-error-boundary'
+import { DialogContent } from '@material-ui/core';
 
 function ParseFailedCard() {
         return (
@@ -58,8 +63,9 @@ export default function Preview(props) {
          return <ParseFailedCard/>;
     }
 
+    // Little hack here to support entering just a schema
+    // or an object that contains a schema+uiSchema
     let schema, uiSchema;
-    
     if (parsed.schema) {
       schema = parsed.schema;
       uiSchema = parsed.uiSchema;
@@ -69,10 +75,23 @@ export default function Preview(props) {
 
     return (
       <div style={{height:"100%"}}>
+        <Dialog open={showDialog} onClose={()=>setShowDialog(false)}>
+          <DialogTitle>
+            Form Data
+          </DialogTitle>
+          <DialogContent>
+            <pre>{JSON.stringify(formData, null, 3)}</pre>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={()=>setShowDialog(false)}>
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
         <Grid container direction="column" justify="space-between">
           <Grid item>
             <ButtonGroup>
-                <Button  onClick={()=>{console.log('show data')}}>
+                <Button  onClick={()=>setShowDialog(true)}>
                   Show Data
                 </Button>
                 <Button onClick={()=>{setFormData({});}}>Reset Data</Button>
