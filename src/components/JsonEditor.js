@@ -1,7 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import Grid from '@material-ui/core/Grid';
-import CodeMirror from '@uiw/react-codemirror';
+import ReactCodeMirror from '@uiw/react-codemirror';
 import 'codemirror/keymap/sublime';
+import 'codemirror/addon/fold/foldcode';
+import 'codemirror/addon/fold/foldgutter';
+import 'codemirror/addon/edit/matchbrackets';
 
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
@@ -40,7 +43,7 @@ export default function Editor(props) {
                     </ButtonGroup>
                 </Grid>
                 <Grid item xs={12}>
-                    <CodeMirror
+                    <ReactCodeMirror
                         style={{height:"100%"}}
                         ref={setInstance}
                         value={code}
@@ -48,7 +51,8 @@ export default function Editor(props) {
                         keyMap: 'sublime',
                         mode: 'json',
                         lint: true,
-                        foldGutter: true
+                        foldGutter: true,
+                        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
                         }}
                         onChange={(instance)=>{onChange(instance.getValue())}}
                     />
