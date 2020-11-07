@@ -9,6 +9,13 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 function defaultOnChange(){};
 
 
+/*
+ * TODO list...
+ * - JSON lint support
+ * - clear functionality
+ * 
+ */
+
 export default function Editor(props) {
     const {code, onChange=defaultOnChange} = props;
     const [instance, setInstance] = useState(undefined);
@@ -16,8 +23,20 @@ export default function Editor(props) {
     return (<Grid container>
                 <Grid item xs={12}>
                     <ButtonGroup>
-                        <Button disabled={!instance} onClick={()=>alert('Format')}>Format</Button>
-                        <Button disabled>Clear</Button>
+                        <Button disabled={!instance} onClick={()=>{
+                            try {
+                                const rawText=instance.editor.getValue();
+                                const jsonObj = JSON.parse(rawText);
+                                const formatted = JSON.stringify(jsonObj, null, 2);
+                                instance.editor.setValue(formatted);
+                            } catch (error) {
+                                // TODO Snackbar on error?
+                                console.log(error.message, error.stack);
+                            }
+                        }}>Format</Button>
+                        <Button disabled onClick={()=>{
+                            // TODO Implement Clear functionality
+                        }}>Clear</Button>
                     </ButtonGroup>
                 </Grid>
                 <Grid item xs={12}>
@@ -26,7 +45,6 @@ export default function Editor(props) {
                         ref={setInstance}
                         value={code}
                         options={{
-                        // theme: 'monokai',
                         keyMap: 'sublime',
                         mode: 'json',
                         lint: true,
