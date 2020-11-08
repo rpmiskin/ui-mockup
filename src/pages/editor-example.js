@@ -3,24 +3,12 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Card from '@material-ui/core/Card';
-import Button from '@material-ui/core/Button';
 import Link from '../components/Link';
 
 import JsonEditor from '../components/JsonEditor'
 
-import JsonPreview from '../components/JsonPreview'
+// import JsonPreview from '../components/JsonPreview'
 import FormPreview from '../components/JsonSchemaFormPreview'
-
-const initialCode = {
-  title: "Todo",
-  type: "object",
-  required: ["title"],
-  properties: {
-    title: {type: "string", title: "Title", default: "A new task"},
-    done: {type: "boolean", title: "Done?", default: false}
-  }
-};
 
 const schema = {
   "schema": {
@@ -79,7 +67,6 @@ const schema = {
   }
 };
 
-const defaultSchedule = [9, 17];
 export default function Index() {
   const [code, setCode] = useState(JSON.stringify(schema, null, 3));
   return (

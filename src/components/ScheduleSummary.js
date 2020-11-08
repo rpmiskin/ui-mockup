@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import {days} from './ScheduleComponent';
 
@@ -14,23 +14,11 @@ const none = "Your task is not scheduled to run.";
 
 // const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 
-function arraysEqual(a, b) {
-    if (a === b) return true;
-    if (a == null || b == null) return false;
-    if (a.length !== b.length) return false;
-    for (var i = 0; i < a.length; ++i) {
-      if (a[i] !== b[i]) return false;
-    }
-    return true;
-  }
-
-
-
 function checkRunningDays (schedule) {
     let x = [];
     days.forEach((d) => {
         if (schedule[d]) {
-            if (Array.isArray(schedule[d]) && schedule[d].length!=0) {
+            if (Array.isArray(schedule[d]) && schedule[d].length!==0) {
                 x.push(d);
             }
         }

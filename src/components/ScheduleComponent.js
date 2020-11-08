@@ -1,8 +1,5 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 
 import DaySlider from './DaySlider';

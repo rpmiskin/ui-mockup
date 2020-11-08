@@ -1,12 +1,10 @@
 import React, {useState} from 'react';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Slider from '@material-ui/core/Slider';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
-import ScheduleComponent from '../components/ScheduleComponent';
 import Link from '../components/Link';
 import ScheduleDialog from '../components/ScheduleDialog';
 import ScheduleSummary from '../components/ScheduleSummary';

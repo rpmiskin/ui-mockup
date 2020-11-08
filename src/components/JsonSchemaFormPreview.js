@@ -33,6 +33,7 @@ function ErrorFallback(props) {
         <Typography>
           Unable to render the form.
           Please correct any errors and try again.
+          <pre>{error.message}</pre>
         </Typography>
       </CardContent>
       <CardActions>
@@ -54,9 +55,7 @@ export default function Preview(props) {
     const [formData, setFormData] = useState({});
     const [showDialog, setShowDialog] = useState(false)
 
-    let parseFailed = false;
     let parsed;
-    let formatted;
     try {
       parsed = JSON.parse(code);
     } catch (error) {

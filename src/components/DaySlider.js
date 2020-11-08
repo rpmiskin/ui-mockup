@@ -2,8 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import Slider from '@material-ui/core/Slider';
 import Button from '@material-ui/core/Button';
 
@@ -48,11 +46,10 @@ const marks = [
     {value:22, valueLabel:"22:00" },
     {value:23, valueLabel:"23:00" }
   ]
-  const defaultSchedule = [{schedule:[9, 17]}];
+
 // FIXME Need to handle the structure:
 //  [{frequency: "15min", schedule:[0,2]},
 //   {frequency: "15min", schedule:[9,17]}]
-//
 
 function detectOverlaps(schedule) {
     const justHours = schedule.filter(s=>s && s.schedule && Array.isArray(s.schedule)).map(s=>s.schedule);
@@ -144,7 +141,7 @@ function DisabledSlider(props) {
 
 export default function DaySlider(props) {
     const classes=useStyles();
-    const {label= "defaultText", onChange= ()=>{}, schedule=[], disabled=false, setDisabled=()=>{}} = props;
+    const {label= "defaultText", onChange= ()=>{}, schedule=[]} = props;
     
     const sliders = createSliders({schedules:schedule, onChange, classes} );
       return (
